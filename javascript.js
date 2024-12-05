@@ -59,7 +59,7 @@ const gameController = function(){
             console.log(`It's Player1's turn. Please select board location to mark`);
             row = prompt(`Board row location`, '0');
             col = prompt(`Board column location`, '0');
-            board[row][col] = players[0].marker;
+            markSpot(row,col);
             
             switchPlayer();
         }
@@ -69,11 +69,21 @@ const gameController = function(){
             console.log(`It's Player2's turn. Please select board location to mark`);
             row = prompt(`Board row location`, '0');
             col = prompt(`Board column location`, '0');
-            board[row][col] = players[1].marker;
+            markSpot(row, col);
 
             switchPlayer();
         }
     }
+
+    function markSpot(x, y){
+        if (board[x][y] == false ){
+            board[x][y] = activePlayer.marker;
+        }
+        else if(board[x][y]){
+            alert(`This spot is marked.`)
+        }
+    }
+
     return{
         playRound
     }
