@@ -33,8 +33,11 @@ const gameController = function(){
         if (activePlayer == player1){
             activePlayer = player2;
         }
+        else if (activePlayer == player2)
+        {
+            activePlayer = player1;
+        }
     }
-
     const board = gameBoard.board;
     const playRound = function() {
         if (activePlayer == player1){
@@ -53,6 +56,7 @@ const gameController = function(){
             row = prompt(`Board row location`, '0');
             col = prompt(`Board column location`, '0');
             board[row][col] = player2.marker;
+
             switchPlayer();
         }
     }
