@@ -66,34 +66,28 @@ const gameController = function(){
     const playRound = function() {
         if (!isGameOver){
             if (activePlayer == players[0]){
-
-                console.log(`It's Player1's turn. Please select board location to mark`);
-                row = prompt(`Board row location`, '0');
-                col = prompt(`Board column location`, '0');
-                markSpot(row,col);
-                
-                if (turnPlayed){
-                    switchPlayer();
-                }
-                isGameOver = gameOver();
+                activePlayerRound();
             }
 
             else if (activePlayer == players[1]){
-
-                console.log(`It's Player2's turn. Please select board location to mark`);
-                row = prompt(`Board row location`, '0');
-                col = prompt(`Board column location`, '0');
-                markSpot(row, col);
-
-                if (turnPlayed){
-                    switchPlayer();
-                }
-                isGameOver = gameOver();
+                activePlayerRound()
             }
         }
         else if(isGameOver){
             alert(`GAME OVER!`)
         }
+    }
+
+    function activePlayerRound(){
+        console.log(`It's ${activePlayer.userName}'s turn. Please select board location to mark`);
+        row = prompt(`Board row location`, '0');
+        col = prompt(`Board column location`, '0');
+        turnPlayed = markSpot(row,col);
+        
+        if (turnPlayed){
+            switchPlayer();
+        }
+        isGameOver = gameOver();
     }
 
     function markSpot(x, y){
@@ -122,12 +116,13 @@ const gameController = function(){
         return true;
     }
 
-    function winGame(){
-        const winningCombination = [horizontal, vertical, diagonal];
+    const winGame = (function(){
         const horizontal = [['00','01','02'],['10','11','12'],['20','21','22']];
         const vertical = [['00','10','20'], ['01','11','21'], ['02','12','22']];
         const diagonal = [['00','11','22'], ['22','11','00']];
-    }
+        const winningCombination = [horizontal, vertical, diagonal];
+        return winningCombination;
+    })();
 
     return{
         playRound
