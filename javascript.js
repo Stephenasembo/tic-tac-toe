@@ -16,53 +16,60 @@ const gameBoard = (function(){
 })();
 
 const gameController = function(){
-    const getPlayerName = function(name){
-        return name;
-    }
 
-    const player1Name = getPlayerName(prompt(`Player1 Enter your name: `));
-    const player2Name = getPlayerName(prompt(`Player2 Enter your name: `));
+    // Create players for the game as a module
+    const gamePlayers = (function() {
+        const getPlayerName = function(name){
+            return name;
+        }
 
-    const players = [
-        {
-            userName: player1Name,
-            marker: '1',
-        }, 
-        {
-            userName: player2Name,
-            marker: '2',
-        }];
+        const player1Name = getPlayerName(prompt(`Player1 Enter your name: `));
+        const player2Name = getPlayerName(prompt(`Player2 Enter your name: `));
 
-    let activePlayer = player1;
+        const players = [
+            {
+                userName: player1Name,
+                marker: '1',
+            }, 
+            {
+                userName: player2Name,
+                marker: '2',
+            }]
+        return { players };
+    })()
+
+    const players = gamePlayers.players;
+
+    let activePlayer = players[0];
     const board = gameBoard.board;
 
     const switchPlayer = function(){
-        if (activePlayer == player1){
-            activePlayer = player2;
+        if (activePlayer == players[0]){
+            activePlayer = players[1];
         }
-        else if (activePlayer == player2)
+        else if (activePlayer == players[1])
         {
-            activePlayer = player1;
+            activePlayer = players[0];
         }
     }
 
     const playRound = function() {
-        if (activePlayer == player1){
+        if (activePlayer == players[0]){
 
             console.log(`It's Player1's turn. Please select board location to mark`);
             row = prompt(`Board row location`, '0');
             col = prompt(`Board column location`, '0');
-            board[row][col] = player1.marker;
+            board[row][col] = players[0].marker;
             
             switchPlayer();
         }
 
-        else if (activePlayer == player2){
+        else if (activePlayer == players[1]){
 
             console.log(`It's Player2's turn. Please select board location to mark`);
             row = prompt(`Board row location`, '0');
             col = prompt(`Board column location`, '0');
-            board[row][col] = player2.marker;
+            board[row][col] = players[1].marker;
 
             switchPlayer();
         }
