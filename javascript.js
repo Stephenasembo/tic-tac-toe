@@ -34,10 +34,12 @@ const gameController = function(){
             {
                 userName: player1Name,
                 marker: '1',
+                moves: 0,
             }, 
             {
                 userName: player2Name,
                 marker: '2',
+                moves: 0,
             }]
         return { players };
     })()
@@ -92,6 +94,7 @@ const gameController = function(){
     function markSpot(x, y){
         if (board[x][y] == false){
             board[x][y] = activePlayer.marker;
+            activePlayer.moves++;
         }
         else if(board[x][y]){
             alert(`This spot is marked.`);
@@ -110,6 +113,13 @@ const gameController = function(){
             }
         }
         return true;
+    }
+
+    function winGame(){
+        const winningCombination = [horizontal, vertical, diagonal];
+        const horizontal = [['00','01','02'],['10','11','12'],['20','21','22']];
+        const vertical = [['00','10','20'], ['01','11','21'], ['02','12','22']];
+        const diagonal = [['00','11','22'], ['22','11','00']];
     }
 
     return{
