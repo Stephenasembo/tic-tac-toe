@@ -15,19 +15,26 @@ const gameBoard = (function(){
     };
 })();
 
-function player(name, marker) {
-
-    return {
-        name,
-        marker,
-    };
-};
-
-let player1 = player('Andrew', '1');
-let player2 = player('Mark', '0');
-
 const gameController = function(){
+    const getPlayerName = function(name){
+        return name;
+    }
+
+    const player1Name = getPlayerName(prompt(`Player1 Enter your name: `));
+    const player2Name = getPlayerName(prompt(`Player2 Enter your name: `));
+
+    const players = [
+        {
+            userName: player1Name,
+            marker: '1',
+        }, 
+        {
+            userName: player2Name,
+            marker: '2',
+        }];
+
     let activePlayer = player1;
+    const board = gameBoard.board;
 
     const switchPlayer = function(){
         if (activePlayer == player1){
@@ -38,7 +45,7 @@ const gameController = function(){
             activePlayer = player1;
         }
     }
-    const board = gameBoard.board;
+
     const playRound = function() {
         if (activePlayer == player1){
 
@@ -46,7 +53,7 @@ const gameController = function(){
             row = prompt(`Board row location`, '0');
             col = prompt(`Board column location`, '0');
             board[row][col] = player1.marker;
-
+            
             switchPlayer();
         }
 
