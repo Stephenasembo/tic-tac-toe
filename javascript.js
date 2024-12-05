@@ -35,11 +35,13 @@ const gameController = function(){
                 userName: player1Name,
                 marker: '1',
                 moves: 0,
+                userCombo: [],
             }, 
             {
                 userName: player2Name,
                 marker: '2',
                 moves: 0,
+                userCombo: [],
             }]
         return { players };
     })()
@@ -82,9 +84,13 @@ const gameController = function(){
         console.log(`It's ${activePlayer.userName}'s turn. Please select board location to mark`);
         row = prompt(`Board row location`, '0');
         col = prompt(`Board column location`, '0');
+        let boardLocation;
         turnPlayed = markSpot(row,col);
         
         if (turnPlayed){
+            boardLocation = (row.toString()) + (col.toString());
+            activePlayer.userCombo.push(boardLocation);
+            console.log(activePlayer.userCombo)
             switchPlayer();
         }
         isGameOver = gameOver();
