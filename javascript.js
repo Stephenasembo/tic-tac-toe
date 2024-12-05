@@ -35,12 +35,26 @@ const gameController = function(){
         }
     }
 
-    const board = gameBoard.board
+    const board = gameBoard.board;
     const playRound = function() {
+        if (activePlayer == player1){
+
             console.log(`It's Player1's turn. Please select board location to mark`);
             row = prompt(`Board row location`, '0');
             col = prompt(`Board column location`, '0');
-            board[row][col] = '1'
+            board[row][col] = player1.marker;
+
+            switchPlayer();
+        }
+
+        else if (activePlayer == player2){
+
+            console.log(`It's Player2's turn. Please select board location to mark`);
+            row = prompt(`Board row location`, '0');
+            col = prompt(`Board column location`, '0');
+            board[row][col] = player2.marker;
+            switchPlayer();
+        }
     }
     return{
         playRound
