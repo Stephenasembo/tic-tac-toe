@@ -24,4 +24,13 @@ function player(name, marker) {
 };
 
 let player1 = player('Andrew', '1');
-let player2 = player('Mark', '0')
+let player2 = player('Mark', '0');
+
+const gameController = function(){
+    let activePlayer = player1;
+    const switchPlayer = function(){
+        if (activePlayer == player1){
+            activePlayer = player2;
+        }
+    }
+}
