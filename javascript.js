@@ -51,6 +51,7 @@ const gameController = function(){
     const boardRows = gameBoard.getRows();
     const boardColumns = gameBoard.getColumns();
     let isGameOver = false;
+    let turnPlayed = false;
 
     const switchPlayer = function(){
         if (activePlayer == players[0]){
@@ -71,7 +72,9 @@ const gameController = function(){
                 col = prompt(`Board column location`, '0');
                 markSpot(row,col);
                 
-                switchPlayer();
+                if (turnPlayed){
+                    switchPlayer();
+                }
                 isGameOver = gameOver();
             }
 
@@ -82,7 +85,9 @@ const gameController = function(){
                 col = prompt(`Board column location`, '0');
                 markSpot(row, col);
 
-                switchPlayer();
+                if (turnPlayed){
+                    switchPlayer();
+                }
                 isGameOver = gameOver();
             }
         }
@@ -95,9 +100,11 @@ const gameController = function(){
         if (board[x][y] == false){
             board[x][y] = activePlayer.marker;
             activePlayer.moves++;
+            return true;
         }
         else if(board[x][y]){
             alert(`This spot is marked.`);
+            return false;
         }
     }
 
