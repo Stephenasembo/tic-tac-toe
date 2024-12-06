@@ -105,13 +105,11 @@ const gameController = function(){
     }
 
     function getLocation (){
-        if(boardLocation){
-            let locationArr = boardLocation.split('');
-            console.log(locationArr)
-            row = locationArr[0];
-            col = locationArr[1];
-            turnPlayed = markSpot(row,col);
-        }
+        let locationArr = boardLocation.split('');
+        console.log(locationArr)
+        row = locationArr[0];
+        col = locationArr[1];
+        turnPlayed = markSpot(row,col);
         if (turnPlayed){
             activePlayer.userCombo.push(boardLocation);
             console.log(activePlayer.userCombo);
