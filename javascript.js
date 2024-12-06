@@ -175,12 +175,19 @@ const gameController = function(){
             player['userCombo'] = [];
             player['moves'] = 0;
         }
-        playRound();
     }
+
+    const restartGame = function (){
+        restartRound();
+        players[0].userName = prompt('Player1 Enter your name');
+        players[1].userName = prompt('Player2 Enter your name');
+        playRound();
+        }
 
     return{
         playRound,
         restartRound,
+        restartGame,
     }
 }
 
