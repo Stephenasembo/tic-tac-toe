@@ -20,6 +20,7 @@ const gameBoard = (function(){
 })();
 
 const gameController = function(){
+    let gameWon = false;
 
     // Create players for the game as a module
     const gamePlayers = (function() {
@@ -76,10 +77,10 @@ const gameController = function(){
             }
         }
         else if(isGameOver){
-            alert(`GAME OVER!`)
+            alert(`GAME OVER! It was a Tie!`);
+            return;
         }
     }
-    let gameWon = false;
     function activePlayerRound(){
         if(gameWon){
             return;
@@ -97,12 +98,16 @@ const gameController = function(){
             console.log(activePlayer.userCombo);
             gameWon = checkForWin();
             if (gameWon){
-                alert('Game Won');
+                alert(`Game Won by ${activePlayer.userName}`);
                 return;
+            }
+            isGameOver = gameOver();
+            if (isGameOver){
+                alert('Game Over! It was a tie')
+                return
             }
             switchPlayer();
         }
-        isGameOver = gameOver();
     }
 
     function markSpot(x, y){
