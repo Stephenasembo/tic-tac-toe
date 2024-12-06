@@ -1,4 +1,5 @@
 const gameBoard = (function(){
+    /*
     const board = [];
     const rows = 3;
     const columns = 3;
@@ -21,6 +22,16 @@ const gameBoard = (function(){
         getRows,
         getColumns,
     };
+    */
+
+    const board = dom.divBoard;
+    board.forEach((spot) => {
+        spot.addEventListener('click', getSpotId)
+    })
+
+    function getSpotId(spot){
+        alert('my id is ' + spot.target.id)
+    }
 })();
 
 const gameController = function(){
@@ -194,6 +205,7 @@ const gameController = function(){
     const player1Name = document.querySelector('#player1');
     const player2Name = document.querySelector('#player2');
     
+    const divBoard = Array.from(document.querySelectorAll('.spot'));
     return {
         startGame,
         dialog,
@@ -201,6 +213,7 @@ const gameController = function(){
         confirm,
         player1Name,
         player2Name,
+        divBoard,
     }
  })()
 
