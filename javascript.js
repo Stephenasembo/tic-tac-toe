@@ -1,3 +1,23 @@
+const dom = (function cacheDom (){
+    const startGame = document.querySelector('#startGame');
+    const dialog = document.querySelector('dialog');
+    const close = document.querySelector('#cancel');
+    const confirm = document.querySelector('#confirm');
+    const player1Name = document.querySelector('#player1');
+    const player2Name = document.querySelector('#player2');
+    
+    const divBoard = Array.from(document.querySelectorAll('.spot'));
+    return {
+        startGame,
+        dialog,
+        close,
+        confirm,
+        player1Name,
+        player2Name,
+        divBoard,
+    }
+ })()
+
 const gameBoard = (function(){
     /*
     const board = [];
@@ -196,27 +216,6 @@ const gameController = function(){
         restartGame,
     }
 }
-
- const dom = (function cacheDom (){
-    const startGame = document.querySelector('#startGame');
-    const dialog = document.querySelector('dialog');
-    const close = document.querySelector('#cancel');
-    const confirm = document.querySelector('#confirm');
-    const player1Name = document.querySelector('#player1');
-    const player2Name = document.querySelector('#player2');
-    
-    const divBoard = Array.from(document.querySelectorAll('.spot'));
-    return {
-        startGame,
-        dialog,
-        close,
-        confirm,
-        player1Name,
-        player2Name,
-        divBoard,
-    }
- })()
-
 
 const handleForm = (function(){
 
