@@ -151,7 +151,7 @@ const gameController = function(){
     const winCombo = (function(){
         const horizontal = [['00','01','02'],['10','11','12'],['20','21','22']];
         const vertical = [['00','10','20'], ['01','11','21'], ['02','12','22']];
-        const diagonal = [['00','11','22'], ['22','11','00']];
+        const diagonal = [['00','11','22'], ['02','11','20']];
         const winningCombo = [...horizontal, ...vertical, ...diagonal]
         return winningCombo;
     })();
