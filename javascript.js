@@ -19,31 +19,6 @@ const dom = (function cacheDom (){
  })()
 
 const gameBoard = (function(){
-    /*
-    const board = [];
-    const rows = 3;
-    const columns = 3;
-    const cell = [];
-
-    function createBoard(){
-        for(let i = 0; i < rows; i++){
-            board[i] = [];
-            for(let j = 0; j < columns; j++){
-                board[i].push(cell);
-            }
-        }
-        return board;
-    }
-
-    const getRows = () => rows;
-    const getColumns = () => columns;
-    return {
-        createBoard,
-        getRows,
-        getColumns,
-    };
-    */
-
     const board = dom.divBoard;
     board.forEach((spot) => {
         spot.addEventListener('click', getSpotId)
@@ -52,12 +27,15 @@ const gameBoard = (function(){
     function getSpotId(spot){
         alert('my id is ' + spot.target.id)
     }
+    return {
+        board,
+    }
 })();
 
 const gameController = function(){
     let gameWon = false;
     let winner;
-    let board = gameBoard.createBoard();
+    let board = gameBoard.board;
 
     // Create players for the game as a module
     const gamePlayers = (function() {
@@ -82,8 +60,6 @@ const gameController = function(){
     const players = gamePlayers.players;
 
     let activePlayer = players[0];
-    const boardRows = gameBoard.getRows();
-    const boardColumns = gameBoard.getColumns();
     let isGameOver = false;
     let turnPlayed = false;
 
@@ -169,9 +145,9 @@ const gameController = function(){
     }
 
     function gameOver(){
-        for(let i = 0; i < boardRows; i++)
+        for(let i = 0; i < 3; i++)
         {
-            for(let j = 0; j < boardColumns; j++)
+            for(let j = 0; j < 3; j++)
             {
                 if(board[i][j] == false)
                 {
