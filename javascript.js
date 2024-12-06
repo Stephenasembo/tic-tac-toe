@@ -18,18 +18,6 @@ const dom = (function cacheDom (){
     }
  })()
 
-/*const gameBoard = (function(){
-    const board = dom.divBoard;
-    board.forEach((spot) => {
-        spot.addEventListener('click', getSpotId)
-    })
-
-    function getSpotId(spot){
-        alert('my id is ' + spot.target.id)
-    }
-    return board
-})();*/
-
 const gameController = function(){
     let gameWon = false;
     let winner;
