@@ -79,8 +79,12 @@ const gameController = function(){
             alert(`GAME OVER!`)
         }
     }
-
+    let gameWon = false;
     function activePlayerRound(){
+        if(gameWon){
+            return;
+        }
+
         console.log(`It's ${activePlayer.userName}'s turn. Please select board location to mark`);
         row = prompt(`Board row location`, '0');
         col = prompt(`Board column location`, '0');
@@ -90,7 +94,12 @@ const gameController = function(){
         if (turnPlayed){
             boardLocation = (row.toString()) + (col.toString());
             activePlayer.userCombo.push(boardLocation);
-            console.log(activePlayer.userCombo)
+            console.log(activePlayer.userCombo);
+            gameWon = checkForWin();
+            if (gameWon){
+                alert('Game Won');
+                return;
+            }
             switchPlayer();
         }
         isGameOver = gameOver();
@@ -105,6 +114,18 @@ const gameController = function(){
         else if(board[x][y]){
             alert(`This spot is marked.`);
             return false;
+        }
+    }
+
+    function checkForWin(){
+        if (activePlayer.moves >=3 ){
+            let comboArray = activePlayer.userCombo;
+            return winCombo.some(array => {
+                let allFound = comboArray.every(el => array.includes(el));
+                if (allFound){
+                    return true;
+                }
+            })
         }
     }
 
@@ -126,15 +147,13 @@ const gameController = function(){
         const horizontal = [['00','01','02'],['10','11','12'],['20','21','22']];
         const vertical = [['00','10','20'], ['01','11','21'], ['02','12','22']];
         const diagonal = [['00','11','22'], ['22','11','00']];
-        return {
-            horizontal,
-            vertical,
-            diagonal,
-        };
+        const winningCombo = [...horizontal, ...vertical, ...diagonal]
+        return winningCombo;
     })();
 
     return{
-        playRound
+        playRound,
+        winCombo
     }
 }
 
