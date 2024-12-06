@@ -4,16 +4,20 @@ const gameBoard = (function(){
     const columns = 3;
     const cell = [];
 
-    for(let i = 0; i < rows; i++){
-        board[i] = [];
-        for(let j = 0; j < columns; j++){
-            board[i].push(cell);
+    function createBoard(){
+        for(let i = 0; i < rows; i++){
+            board[i] = [];
+            for(let j = 0; j < columns; j++){
+                board[i].push(cell);
+            }
         }
+        return board;
     }
+
     const getRows = () => rows;
     const getColumns = () => columns;
     return {
-        board,
+        createBoard,
         getRows,
         getColumns,
     };
@@ -22,6 +26,7 @@ const gameBoard = (function(){
 const gameController = function(){
     let gameWon = false;
     let winner;
+    let board = gameBoard.createBoard();
 
     // Create players for the game as a module
     const gamePlayers = (function() {
@@ -51,7 +56,6 @@ const gameController = function(){
     const players = gamePlayers.players;
 
     let activePlayer = players[0];
-    const board = gameBoard.board;
     const boardRows = gameBoard.getRows();
     const boardColumns = gameBoard.getColumns();
     let isGameOver = false;
@@ -162,8 +166,7 @@ const gameController = function(){
 
     return{
         playRound,
-        winCombo
     }
 }
 
-let res = gameController()
+ let test = gameController()
