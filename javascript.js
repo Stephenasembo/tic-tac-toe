@@ -18,7 +18,7 @@ const dom = (function cacheDom (){
     }
  })()
 
-const gameBoard = (function(){
+/*const gameBoard = (function(){
     const board = dom.divBoard;
     board.forEach((spot) => {
         spot.addEventListener('click', getSpotId)
@@ -27,15 +27,23 @@ const gameBoard = (function(){
     function getSpotId(spot){
         alert('my id is ' + spot.target.id)
     }
-    return {
-        board,
-    }
-})();
+    return board
+})();*/
 
 const gameController = function(){
     let gameWon = false;
     let winner;
-    let board = gameBoard.board;
+    let board = (function(){
+        const board = dom.divBoard;
+        board.forEach((spot) => {
+            spot.addEventListener('click', getSpotId)
+        })
+    
+        function getSpotId(spot){
+            alert('my id is ' + spot.target.id)
+        }
+        return board
+    })();
 
     // Create players for the game as a module
     const gamePlayers = (function() {
