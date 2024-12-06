@@ -85,6 +85,51 @@ const gameController = function(){
         }
     }
 
+    function setUpBoard(){
+        dom.divBoard.forEach((spot) => {
+            spot.addEventListener('click', getSpotId);
+        })
+        function getSpotId(spot){
+            boardLocation = spot.target.id;
+            console.log(boardLocation);
+            if (boardLocation){
+                clearEventListeners();
+                getLocation()
+            }
+        }
+        function clearEventListeners(){
+            dom.divBoard.forEach((spot) => {
+                spot.removeEventListener('click', getSpotId)
+            })
+        }
+    }
+
+    function getLocation (){
+        if(boardLocation){
+            let locationArr = boardLocation.split('');
+            console.log(locationArr)
+            row = locationArr[0];
+            col = locationArr[1];
+            turnPlayed = markSpot(row,col);
+        }
+        if (turnPlayed){
+            activePlayer.userCombo.push(boardLocation);
+            console.log(activePlayer.userCombo);
+            gameWon = checkForWin();
+            if (gameWon){
+                winner = activePlayer.userName
+                alert(`Game Won by ${winner}`);
+                return;
+            }
+            isGameOver = gameOver();
+            if (isGameOver){
+                alert('Game Over! It was a tie')
+                return
+            }
+            switchPlayer();
+        }
+}
+
     const playRound = function() {
         if (!isGameOver && !gameWon){
             if (activePlayer == players[0]){
@@ -107,28 +152,8 @@ const gameController = function(){
     }
     function activePlayerRound(){
 
-        console.log(`It's ${activePlayer.userName}'s turn. Please select board location to mark`);
-        let locationArr = boardLocation.split('');
-        row = locationArr[0];
-        col = locationArr[1];
-        turnPlayed = markSpot(row,col);
-        
-        if (turnPlayed){
-            activePlayer.userCombo.push(boardLocation);
-            console.log(activePlayer.userCombo);
-            gameWon = checkForWin();
-            if (gameWon){
-                winner = activePlayer.userName
-                alert(`Game Won by ${winner}`);
-                return;
-            }
-            isGameOver = gameOver();
-            if (isGameOver){
-                alert('Game Over! It was a tie')
-                return
-            }
-            switchPlayer();
-        }
+        alert(`It's ${activePlayer.userName}'s turn. Please select board location to mark`);
+        setUpBoard();
     }
 
     function markSpot(x, y){
