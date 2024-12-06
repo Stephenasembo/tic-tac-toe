@@ -191,4 +191,15 @@ const gameController = function(){
     }
 }
 
- let test = gameController()
+ const dom = (function cacheDom (){
+    const startGame = document.querySelector('#startGame');
+    const dialog = document.querySelector('dialog')
+    return {
+        startGame,
+        dialog,
+    }
+ })()
+
+ const eventListeners = (function(){
+    dom.startGame.addEventListener('click', () => dom.dialog.showModal())
+})()
