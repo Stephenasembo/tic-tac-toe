@@ -20,7 +20,8 @@ const dom = (function cacheDom (){
 
 const gameController = function(){
     let gameWon = false;
-    let winner;
+    let winner = null;
+    let boardLocation = null;
     let board = (function(){
         const board = dom.divBoard;
         board.forEach((spot) => {
@@ -28,7 +29,7 @@ const gameController = function(){
         })
     
         function getSpotId(spot){
-            alert('my id is ' + spot.target.id)
+            boardLocation = spot.target.id;
         }
         return board
     })();
@@ -92,13 +93,12 @@ const gameController = function(){
     function activePlayerRound(){
 
         console.log(`It's ${activePlayer.userName}'s turn. Please select board location to mark`);
-        row = prompt(`Board row location`, '0');
-        col = prompt(`Board column location`, '0');
-        let boardLocation;
+        let locationArr = boardLocation.split('');
+        row = locationArr[0];
+        col = locationArr[1];
         turnPlayed = markSpot(row,col);
         
         if (turnPlayed){
-            boardLocation = (row.toString()) + (col.toString());
             activePlayer.userCombo.push(boardLocation);
             console.log(activePlayer.userCombo);
             gameWon = checkForWin();
