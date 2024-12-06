@@ -1,0 +1,27 @@
+#container {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: 1fr;
+}
+#container > div{
+    border: 1px solid yellow;
+    min-height: 100px;
+    min-width: 100px;
+    background-color: red;
+}
+
+.gameBoard {
+    height: 540px;
+    width: 540px;
+    display: grid;
+    grid-template-columns: repeat(3, 180px);
+    grid-template-rows: repeat(3, 180px);
+    border: 1px solid black;
+    margin: auto;
+}
+
+.gameBoard > div {
+    box-sizing: border-box;
+    background-color: hotpink;
+    border: 2px solid black;
+}
