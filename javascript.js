@@ -18,21 +18,36 @@ const dom = (function cacheDom (){
     }
  })()
 
+ const gameBoard = function(){
+    const board = [];
+    const rows = 3;
+    const columns = 3;
+    const cell = [];
+
+    function createBoard(){
+        for(let i = 0; i < rows; i++){
+            board[i] = [];
+            for(let j = 0; j < columns; j++){
+                board[i].push(cell);
+            }
+        }
+        return board;
+    }
+
+    const getRows = () => rows;
+    const getColumns = () => columns;
+    return {
+        createBoard,
+        getRows,
+        getColumns,
+    };
+ }
+
 const gameController = function(){
     let gameWon = false;
     let winner = null;
     let boardLocation = null;
-    let board = (function(){
-        const board = dom.divBoard;
-        board.forEach((spot) => {
-            spot.addEventListener('click', getSpotId)
-        })
-    
-        function getSpotId(spot){
-            boardLocation = spot.target.id;
-        }
-        return board
-    })();
+    let board = gameBoard.createBoard;
 
     // Create players for the game as a module
     const gamePlayers = (function() {
