@@ -30,22 +30,17 @@ const gameController = function(){
 
     // Create players for the game as a module
     const gamePlayers = (function() {
-        const getPlayerName = function(name){
-            return name;
-        }
-
-        const player1Name = getPlayerName(prompt(`Player1 Enter your name: `));
-        const player2Name = getPlayerName(prompt(`Player2 Enter your name: `));
+        const playerNames = getValues();
 
         const players = [
             {
-                userName: player1Name,
+                userName: playerNames['player1'],
                 marker: '1',
                 moves: 0,
                 userCombo: [],
             }, 
             {
-                userName: player2Name,
+                userName: playerNames['player2'],
                 marker: '2',
                 moves: 0,
                 userCombo: [],
