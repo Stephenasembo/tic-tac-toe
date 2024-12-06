@@ -18,7 +18,7 @@ const dom = (function cacheDom (){
     }
  })()
 
- const gameBoard = function(){
+ const gameBoard = (function(){
     const board = [];
     const rows = 3;
     const columns = 3;
@@ -41,13 +41,13 @@ const dom = (function cacheDom (){
         getRows,
         getColumns,
     };
- }
+ })()
 
 const gameController = function(){
     let gameWon = false;
     let winner = null;
     let boardLocation = null;
-    let board = gameBoard.createBoard;
+    let board = gameBoard.createBoard();
 
     // Create players for the game as a module
     const gamePlayers = (function() {
@@ -107,8 +107,9 @@ const gameController = function(){
     function getLocation (){
         let locationArr = boardLocation.split('');
         console.log(locationArr)
-        row = locationArr[0];
-        col = locationArr[1];
+        row = Number(locationArr[0]);
+        col = Number(locationArr[1]);
+
         turnPlayed = markSpot(row,col);
         if (turnPlayed){
             activePlayer.userCombo.push(boardLocation);
