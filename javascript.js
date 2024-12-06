@@ -193,13 +193,59 @@ const gameController = function(){
 
  const dom = (function cacheDom (){
     const startGame = document.querySelector('#startGame');
-    const dialog = document.querySelector('dialog')
+    const dialog = document.querySelector('dialog');
+    const close = document.querySelector('#cancel');
+    const confirm = document.querySelector('#confirm');
+    const player1Name = document.querySelector('#player1');
+    const player2Name = document.querySelector('#player2');
+    
     return {
         startGame,
         dialog,
+        close,
+        confirm,
+        player1Name,
+        player2Name,
     }
  })()
 
- const eventListeners = (function(){
-    dom.startGame.addEventListener('click', () => dom.dialog.showModal())
+
+const handleForm = (function(){
+
+    const showForm = function (){
+        dom.startGame.addEventListener('click', () => {
+            resetForm()
+            formSubmitted = false;
+            dom.dialog.showModal()
+    })
+    }
+
+    const resetForm = function(){
+        dom.player1Name.value = '';
+        dom.player2Name.value = '';
+    }
+
+    const closeForm =  function(){
+        event.preventDefault();
+        dom.dialog.close();
+    }
+
+    return{
+        showForm,
+        closeForm,
+        resetForm,
+    }
 })()
+
+const startGame = (function(){
+    handleForm.showForm()
+    dom.close.addEventListener('click', handleForm.closeForm);
+    dom.confirm.addEventListener('click', handleForm.closeForm);
+})()
+
+function getValues (){
+    return{
+        player1: dom.player1Name.value,
+        player2: dom.player2Name.value,
+    }
+}
