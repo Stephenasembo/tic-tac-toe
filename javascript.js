@@ -164,8 +164,23 @@ const gameController = function(){
         return winningCombo;
     })();
 
+    const restartRound = function(){
+        isGameOver = false;
+        gameWon = false;
+        activePlayer = players[0];
+        winner = null;
+        turnPlayed = false;
+        board = gameBoard.createBoard();
+        for (let player of players) {
+            player['userCombo'] = [];
+            player['moves'] = 0;
+        }
+        playRound();
+    }
+
     return{
         playRound,
+        restartRound,
     }
 }
 
