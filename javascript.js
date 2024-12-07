@@ -277,6 +277,7 @@ const startGame = (function(){
 
     function restartRound(){
         if(gameStarted){
+            display.clearBoard();
             game.restartRound();
         }
     }
@@ -299,7 +300,13 @@ const display = (function(){
             }
         }
     }
+    function clearBoard(){
+        for(let div of dom.divBoard){
+            div.textContent = '';
+        }
+    }
     return {
         renderMark,
+        clearBoard,
     }
 })()
