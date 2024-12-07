@@ -142,11 +142,10 @@ const gameController = function(){
         }
         else if(isGameOver || gameWon){
             if(isGameOver){
-                alert(`GAME OVER! It was a Tie!`);
                 return;    
             }
             else if(gameWon){
-                alert(`Game was won by ${winner}`)
+                return
             }
         }
     }
