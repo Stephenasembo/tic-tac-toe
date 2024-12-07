@@ -257,15 +257,26 @@ const handleForm = (function(){
 })()
 
 const startGame = (function(){
+    let game = null;
+    let gameStarted = null;
     handleForm.showForm()
     dom.close.addEventListener('click', handleForm.closeForm);
     dom.confirm.addEventListener('click', handleForm.closeForm);
-    dom.confirm.addEventListener('click', playGame)
+    dom.confirm.addEventListener('click', playGame);
+    dom.restartRoundBtn.addEventListener('click', restartRound);
 
     function playGame(){
-        let game = gameController();
+        game = gameController();
         game.playRound();
+        gameStarted = true;
     }
+
+    function restartRound(){
+        if(gameStarted){
+            game.restartRound();
+        }
+    }
+
 })()
 
 function getValues (){
