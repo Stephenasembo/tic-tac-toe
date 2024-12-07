@@ -236,11 +236,9 @@ const gameController = function(){
 const handleForm = (function(){
 
     const showForm = function (){
-        dom.startGame.addEventListener('click', () => {
             resetForm()
             formSubmitted = false;
             dom.dialog.showModal()
-    })
     }
 
     const resetForm = function(){
@@ -263,13 +261,15 @@ const handleForm = (function(){
 const startGame = (function(){
     let game = null;
     let gameStarted = null;
-    handleForm.showForm()
+    //handleForm.showForm()
+    dom.startGame.addEventListener('click', handleForm.showForm);
     dom.close.addEventListener('click', handleForm.closeForm);
     dom.confirm.addEventListener('click', handleForm.closeForm);
     dom.confirm.addEventListener('click', playGame);
     dom.restartRoundBtn.addEventListener('click', restartRound);
 
     function playGame(){
+
         game = gameController();
         game.playRound();
         gameStarted = true;
