@@ -259,6 +259,12 @@ const startGame = (function(){
     handleForm.showForm()
     dom.close.addEventListener('click', handleForm.closeForm);
     dom.confirm.addEventListener('click', handleForm.closeForm);
+    dom.confirm.addEventListener('click', playGame)
+
+    function playGame(){
+        let game = gameController();
+        game.playRound();
+    }
 })()
 
 function getValues (){
