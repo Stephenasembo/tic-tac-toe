@@ -94,7 +94,8 @@ const gameController = function(){
             console.log(boardLocation);
             if (boardLocation){
                 clearEventListeners();
-                getLocation()
+                getLocation();
+                playRound();
             }
         }
         function clearEventListeners(){
