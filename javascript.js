@@ -214,6 +214,7 @@ const gameController = function(){
             player['userCombo'] = [];
             player['moves'] = 0;
         }
+        alert(`The round is restarted. ${activePlayer.userName} it is now your turn`);
     }
 
     const restartGame = function (){
