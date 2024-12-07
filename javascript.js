@@ -93,10 +93,10 @@ const gameController = function(){
             boardLocation = spot.target.id;
             console.log(boardLocation);
             if (boardLocation){
-                clearEventListeners();
                 getLocation();
                 playRound();
             }
+            clearEventListeners();
         }
         function clearEventListeners(){
             dom.divBoard.forEach((spot) => {
