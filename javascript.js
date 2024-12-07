@@ -261,7 +261,7 @@ const handleForm = (function(){
 const startGame = (function(){
     let game = null;
     let gameStarted = null;
-    //handleForm.showForm()
+
     dom.startGame.addEventListener('click', handleForm.showForm);
     dom.close.addEventListener('click', handleForm.closeForm);
     dom.confirm.addEventListener('click', handleForm.closeForm);
