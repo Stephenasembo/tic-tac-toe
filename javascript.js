@@ -15,6 +15,7 @@ const dom = (function cacheDom (){
         confirm,
         player1Name,
         player2Name,
+        restartRoundBtn,
         divBoard,
     }
  })()
