@@ -5,7 +5,8 @@ const dom = (function cacheDom (){
     const confirm = document.querySelector('#confirm');
     const player1Name = document.querySelector('#player1');
     const player2Name = document.querySelector('#player2');
-    
+    const restartRoundBtn = document.querySelector('#restartRound');
+
     const divBoard = Array.from(document.querySelectorAll('.spot'));
     return {
         startGame,
