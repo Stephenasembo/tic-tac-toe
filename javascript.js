@@ -160,6 +160,8 @@ const gameController = function(){
     function markSpot(x, y){
         if (board[x][y] == false){
             board[x][y] = activePlayer.marker;
+            let id = '' + x + y;
+            display.renderMark(activePlayer.marker, id);
             activePlayer.moves++;
             return true;
         }
@@ -287,3 +289,17 @@ function getValues (){
         player2: dom.player2Name.value,
     }
 }
+
+const display = (function(){
+    function renderMark(mark, location){
+        for(let div of dom.divBoard){
+            if (div.id == location){
+                div.textContent = mark;
+                break;
+            }
+        }
+    }
+    return {
+        renderMark,
+    }
+})()
