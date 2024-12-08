@@ -56,28 +56,6 @@ const gameController = function(){
     let winner = null;
     let boardLocation = null;
     let board = gameBoard.createBoard();
-
-    // Create players for the game as a module
-    /*
-    const gamePlayers = (function() {
-        const playerNames = getValues();
-
-        const players = [
-            {
-                userName: playerNames['player1'],
-                marker: 'x',
-                moves: 0,
-                userCombo: [],
-            }, 
-            {
-                userName: playerNames['player2'],
-                marker: 'o',
-                moves: 0,
-                userCombo: [],
-            }]
-        return { players };
-    })()*/
-
     const players = createPlayers();
 
     let activePlayer = players[0];
