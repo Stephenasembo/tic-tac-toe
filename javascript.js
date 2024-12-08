@@ -56,7 +56,7 @@ const gameController = function(){
     let winner = null;
     let boardLocation = null;
     let board = gameBoard.createBoard();
-    const players = createPlayers();
+    let players = createPlayers();
 
     let activePlayer = players[0];
     let isGameOver = false;
@@ -201,6 +201,7 @@ const gameController = function(){
         }
         display.displayTurn(`The round is restarted. ${activePlayer.userName} it is now your turn`);
         if(isGameOver || gameWon){
+            display.displayWinner('');
             isGameOver = false;
             gameWon = false;
             playRound();
