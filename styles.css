@@ -24,4 +24,6 @@
     box-sizing: border-box;
     background-color: hotpink;
     border: 2px solid black;
+    font-size: 140px;
+    text-align: center;
 }

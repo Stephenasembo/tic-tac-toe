@@ -60,13 +60,13 @@ const gameController = function(){
         const players = [
             {
                 userName: playerNames['player1'],
-                marker: '1',
+                marker: 'x',
                 moves: 0,
                 userCombo: [],
             }, 
             {
                 userName: playerNames['player2'],
-                marker: '2',
+                marker: 'o',
                 moves: 0,
                 userCombo: [],
             }]
