@@ -8,6 +8,7 @@ const dom = (function cacheDom (){
     const restartRoundBtn = document.querySelector('#restartRound');
     const restartGameBtn = document.querySelector('#restartGame');
     const turnPara = document.querySelector('#turnPara');
+    const winnerPara = document.querySelector('#winnerPara');
 
     const divBoard = Array.from(document.querySelectorAll('.spot'));
     return {
@@ -20,6 +21,7 @@ const dom = (function cacheDom (){
         restartRoundBtn,
         restartGameBtn,
         turnPara,
+        winnerPara,
         divBoard,
     }
  })()
@@ -123,13 +125,13 @@ const gameController = function(){
             console.log(activePlayer.userCombo);
             gameWon = checkForWin();
             if (gameWon){
-                winner = activePlayer.userName
-                alert(`Game Won by ${winner}`);
+                winner = activePlayer.userName;
+                display.displayWinner(`Game Won by ${winner}`);
                 return;
             }
             isGameOver = gameOver();
             if (isGameOver){
-                alert('Game Over! It was a tie')
+                display.displayWinner('Game Over! It was a tie');
                 return
             }
             switchPlayer();
@@ -220,7 +222,7 @@ const gameController = function(){
             player['userCombo'] = [];
             player['moves'] = 0;
         }
-        alert(`The round is restarted. ${activePlayer.userName} it is now your turn`);
+        display.displayTurn(`The round is restarted. ${activePlayer.userName} it is now your turn`);
     }
 
     const restartGame = function (){
@@ -320,9 +322,14 @@ const display = (function(){
         dom.turnPara.textContent = text;
     }
 
+    function displayWinner(text){
+        dom.winnerPara.textContent = text;
+    }
+
     return {
         renderMark,
         clearBoard,
         displayTurn,
+        displayWinner,
     }
 })()
