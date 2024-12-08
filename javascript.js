@@ -263,18 +263,7 @@ const startGame = (function(){
             game.playRound();
             gameStarted = true;
             dom.startGame.removeEventListener('click', handleForm.showForm);
-            dom.startGame.addEventListener('click', () => {
-                let restartConfirmation = confirm('Do you want to restart the game ?');
-                if (restartConfirmation){
-                    handleForm.showForm();
-                    dom.confirm.removeEventListener('click', playGame);
-                    dom.confirm.addEventListener('click', () => {
-                        let newNames = createPlayers();
-                        let newP1 = newNames[0].userName;
-                        let newP2 = newNames[1].userName;    
-                        restartGame(newP1, newP2)});
-                }
-            });
+            dom.startGame.addEventListener('click', restartEntireGame);
         }
     }
 
@@ -292,7 +281,23 @@ const startGame = (function(){
         }
     }
 
-})()
+    function restartEntireGame(){
+        let restartConfirmation = confirm('Do you want to restart the game ?');
+        if (restartConfirmation){
+            handleForm.showForm();
+            dom.confirm.removeEventListener('click', playGame);
+            dom.confirm.addEventListener('click', startRestartedGame);
+        }
+    }
+
+    function startRestartedGame(){
+        let newNames = createPlayers();
+        let newP1 = newNames[0].userName;
+        let newP2 = newNames[1].userName;    
+        restartGame(newP1, newP2);
+    }
+
+})();
 
 function getValues (){
     return{
