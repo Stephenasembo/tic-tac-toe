@@ -7,6 +7,7 @@ const dom = (function cacheDom (){
     const player2Name = document.querySelector('#player2');
     const restartRoundBtn = document.querySelector('#restartRound');
     const restartGameBtn = document.querySelector('#restartGame');
+    const turnPara = document.querySelector('#turnPara');
 
     const divBoard = Array.from(document.querySelectorAll('.spot'));
     return {
@@ -18,6 +19,7 @@ const dom = (function cacheDom (){
         player2Name,
         restartRoundBtn,
         restartGameBtn,
+        turnPara,
         divBoard,
     }
  })()
@@ -154,8 +156,8 @@ const gameController = function(){
         }
     }
     function activePlayerRound(){
-
-        alert(`It's ${activePlayer.userName}'s turn. Please select board location to mark`);
+        let text = `It's ${activePlayer.userName}'s turn. Please select board location to mark`;
+        display.displayTurn(text);
         setUpBoard();
     }
 
@@ -307,13 +309,20 @@ const display = (function(){
             }
         }
     }
+
     function clearBoard(){
         for(let div of dom.divBoard){
             div.textContent = '';
         }
     }
+
+    function displayTurn(text){
+        dom.turnPara.textContent = text;
+    }
+
     return {
         renderMark,
         clearBoard,
+        displayTurn,
     }
 })()
