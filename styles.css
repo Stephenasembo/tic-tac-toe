@@ -28,6 +28,33 @@ body{
     box-sizing: border-box;
     background-color: hotpink;
     border: 2px solid black;
-    font-size: 140px;
+    font-size: 120px;
     text-align: center;
+}
+
+.turnOutput{
+    position: relative;
+}
+
+.turnOutput p {
+    font-size: 32px;
+    margin-left: 10px;
+}
+
+#winnerPara {
+    width: max-content;
+    position: absolute;
+}
+
+button:not(form button){
+    padding: 20px;
+    margin: 10px;
+    border-radius: 16px;
+    font-size: 20px;
+}
+
+form button {
+    padding: 10px;
+    border-radius: 16px;
+    margin-right: 10px;
 }
