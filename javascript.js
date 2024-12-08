@@ -209,10 +209,9 @@ const gameController = function(){
     }
 
     const restartGame = function (){
-        players[0].userName = 'mark'//(createPlayers())[0].userName;
-        players[1].userName = 'joe'//(createPlayers())[0].userName;
+        players[0].userName = 'mark';
+        players[1].userName = 'joe';
         restartRound();
-        //playRound();
         }
 
     return{
@@ -259,10 +258,11 @@ const startGame = (function(){
     dom.restartGameBtn.addEventListener('click', restartGame);
 
     function playGame(){
-
         game = gameController();
-        game.playRound();
-        gameStarted = true;
+        if(!gameStarted){
+            game.playRound();
+            gameStarted = true;
+        }
     }
 
     function restartRound(){
@@ -273,8 +273,10 @@ const startGame = (function(){
     }
 
     function restartGame(){
-        display.clearBoard()
-        game.restartGame();
+        if(gameStarted){
+            display.clearBoard()
+            game.restartGame();
+        }
     }
 
 })()
