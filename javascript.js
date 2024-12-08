@@ -103,7 +103,7 @@ const gameController = function(){
             gameWon = checkForWin();
             if (gameWon){
                 winner = activePlayer.userName;
-                display.displayWinner(`Game Won by ${winner}`);
+                display.displayWinner(`Game Won! By ${winner}`);
                 return;
             }
             isGameOver = gameOver();
