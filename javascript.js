@@ -208,9 +208,9 @@ const gameController = function(){
         }
     }
 
-    const restartGame = function (){
-        players[0].userName = 'mark';
-        players[1].userName = 'joe';
+    const restartGame = function (newP1, newP2){
+        players[0].userName = newP1;
+        players[1].userName = newP2;
         restartRound();
         }
 
@@ -262,6 +262,19 @@ const startGame = (function(){
         if(!gameStarted){
             game.playRound();
             gameStarted = true;
+            dom.startGame.removeEventListener('click', handleForm.showForm);
+            dom.startGame.addEventListener('click', () => {
+                let restartConfirmation = confirm('Do you want to restart the game ?');
+                if (restartConfirmation){
+                    handleForm.showForm();
+                    dom.confirm.removeEventListener('click', playGame);
+                    dom.confirm.addEventListener('click', () => {
+                        let newNames = createPlayers();
+                        let newP1 = newNames[0].userName;
+                        let newP2 = newNames[1].userName;    
+                        restartGame(newP1, newP2)});
+                }
+            });
         }
     }
 
@@ -272,10 +285,10 @@ const startGame = (function(){
         }
     }
 
-    function restartGame(){
+    function restartGame(newP1, newP2){
         if(gameStarted){
             display.clearBoard()
-            game.restartGame();
+            game.restartGame(newP1, newP2);
         }
     }
 
