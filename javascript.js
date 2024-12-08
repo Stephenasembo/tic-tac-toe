@@ -6,6 +6,7 @@ const dom = (function cacheDom (){
     const player1Name = document.querySelector('#player1');
     const player2Name = document.querySelector('#player2');
     const restartRoundBtn = document.querySelector('#restartRound');
+    const restartGameBtn = document.querySelector('#restartGame');
 
     const divBoard = Array.from(document.querySelectorAll('.spot'));
     return {
@@ -16,6 +17,7 @@ const dom = (function cacheDom (){
         player1Name,
         player2Name,
         restartRoundBtn,
+        restartGameBtn,
         divBoard,
     }
  })()
@@ -267,6 +269,7 @@ const startGame = (function(){
     dom.confirm.addEventListener('click', handleForm.closeForm);
     dom.confirm.addEventListener('click', playGame);
     dom.restartRoundBtn.addEventListener('click', restartRound);
+    dom.restartGameBtn.addEventListener('click', restartGame);
 
     function playGame(){
 
@@ -280,6 +283,10 @@ const startGame = (function(){
             display.clearBoard();
             game.restartRound();
         }
+    }
+
+    function restartGame(){
+        window.location.reload();
     }
 
 })()
