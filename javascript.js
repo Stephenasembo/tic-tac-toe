@@ -6,7 +6,6 @@ const dom = (function cacheDom (){
     const player1Name = document.querySelector('#player1');
     const player2Name = document.querySelector('#player2');
     const restartRoundBtn = document.querySelector('#restartRound');
-    const restartGameBtn = document.querySelector('#restartGame');
     const turnPara = document.querySelector('#turnPara');
     const winnerPara = document.querySelector('#winnerPara');
 
@@ -19,7 +18,6 @@ const dom = (function cacheDom (){
         player1Name,
         player2Name,
         restartRoundBtn,
-        restartGameBtn,
         turnPara,
         winnerPara,
         divBoard,
@@ -209,6 +207,10 @@ const gameController = function(){
     }
 
     const restartGame = function (newP1, newP2){
+        if(newP1 == undefined || newP2 == undefined){
+            newP1 = players[0].userName;
+            newP2 = players[1].userName;
+        }
         players[0].userName = newP1;
         players[1].userName = newP2;
         restartRound();
@@ -255,7 +257,6 @@ const startGame = (function(){
     dom.confirm.addEventListener('click', handleForm.closeForm);
     dom.confirm.addEventListener('click', playGame);
     dom.restartRoundBtn.addEventListener('click', restartRound);
-    dom.restartGameBtn.addEventListener('click', restartGame);
 
     function playGame(){
         game = gameController();
@@ -274,16 +275,10 @@ const startGame = (function(){
         }
     }
 
-    function restartGame(newP1, newP2){
-        if(gameStarted){
-            display.clearBoard()
-            game.restartGame(newP1, newP2);
-        }
-    }
-
     function restartEntireGame(){
         let restartConfirmation = confirm('Do you want to restart the game ?');
         if (restartConfirmation){
+            display.clearBoard();
             handleForm.showForm();
             dom.confirm.removeEventListener('click', playGame);
             dom.confirm.addEventListener('click', startRestartedGame);
@@ -294,7 +289,7 @@ const startGame = (function(){
         let newNames = createPlayers();
         let newP1 = newNames[0].userName;
         let newP2 = newNames[1].userName;    
-        restartGame(newP1, newP2);
+        game.restartGame(newP1, newP2);
     }
 
 })();
