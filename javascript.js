@@ -212,8 +212,6 @@ const gameController = function(){
     })();
 
     const restartRound = function(){
-        isGameOver = false;
-        gameWon = false;
         activePlayer = players[0];
         winner = null;
         turnPlayed = false;
@@ -223,6 +221,11 @@ const gameController = function(){
             player['moves'] = 0;
         }
         display.displayTurn(`The round is restarted. ${activePlayer.userName} it is now your turn`);
+        if(isGameOver || gameWon){
+            isGameOver = false;
+            gameWon = false;
+            playRound();
+        }
     }
 
     const restartGame = function (){
