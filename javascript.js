@@ -214,6 +214,7 @@ const gameController = function(){
         players[0].userName = newP1;
         players[1].userName = newP2;
         restartRound();
+        display.displayTurn(`A new game has been started. ${activePlayer.userName} it is now your turn`)
         }
 
     return{
