@@ -209,10 +209,10 @@ const gameController = function(){
     }
 
     const restartGame = function (){
+        players[0].userName = 'mark'//(createPlayers())[0].userName;
+        players[1].userName = 'joe'//(createPlayers())[0].userName;
         restartRound();
-        players[0].userName = prompt('Player1 Enter your name');
-        players[1].userName = prompt('Player2 Enter your name');
-        playRound();
+        //playRound();
         }
 
     return{
@@ -273,7 +273,8 @@ const startGame = (function(){
     }
 
     function restartGame(){
-        window.location.reload();
+        display.clearBoard()
+        game.restartGame();
     }
 
 })()
